@@ -1,5 +1,8 @@
 package baioc.dontpad;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,5 +37,12 @@ public class NotepadService {
 		repository.deleteById(path);
 	}
 
-}
+	public List<String> list(String folder) {
+		return repository
+			.findByDirectory(folder)
+			.stream()
+			.map(Notepad::filename)
+			.collect(Collectors.toList());
+	}
 
+}

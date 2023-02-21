@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title th:text="${filename}"></title>
+
+	<title th:text="${directory} + ${filename}"></title>
+
 	<style>
 		* {
 			margin: 0px;
 			padding: 0px;
+		}
+		html {
 			overflow: hidden;
 		}
-		textarea {
+		body {
+			height: 100vh;
+			width: 100vw;
+		}
+		.flex {
+			display: flex;
+		}
+		.column {
+			height: 100%;
+		}
+		#folder {
+			padding-left: 8px;
+			padding-right: 8px;
+			width: auto;
+			color: dimgray;
+			background-color: lightgray;
+		}
+		#notepad {
+			flex-grow: 1;
+			color: black;
+			background-color: white;
+		}
+		#notepad textarea {
 			padding: 8px;
+			width: calc(100% - 16px);
+			height: calc(100% - 16px);
 			overflow: auto;
-			width: calc(100vw - 16px);
-			height: calc(100vh - 16px);
 			outline: none;
 			resize: none;
 			border: 0px;
@@ -21,9 +48,17 @@
 		}
 	</style>
 </head>
-<body>
-	<div>
+
+<body class="flex">
+	<section id="folder" class="column" th:if="${subfiles.size} > 0">
+		<h2 th:text="${folder}"></h2>
+		<ul th:each="subfile: ${subfiles}">
+			<li><a th:text="${subfile}" th:href="'/api' + ${folder} + ${subfile}"></a></li>
+		</ul>
+	</section>
+	<section id="notepad" class="column">
 		<textarea wrap="off" autofocus th:text="${content}"></textarea>
-	</div>
+	</section>
 </body>
+
 </html>

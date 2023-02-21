@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>dontpad</title>
+
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		body {
+			font-family: sans-serif;
+		}
+		h1 {
+			text-align: center;
+			font-size: 8vmin;
+			margin-top: 24vh;
+			margin-bottom: 2vh;
+			color: black;
+		}
+		h2 {
+			text-align: center;
+			font-size: 3vmin;
+			margin-bottom: 10vh;
+			font-weight: 400;
+			color: gray;
+		}
+		footer {
+			position: fixed;
+			bottom: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+			height: 8vh;
+		}
+		form {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#path .prefix {
+			display: flex;
+			align-items: center;
+			height: 4.4vh;
+			font-size: 2.4vmin;
+			border: .5px solid gray;
+			border-right: none;
+			border-radius: .6vmin 0 0 .6vmin;
+			padding: 0 1.6vmin;
+			box-sizing: border-box;
+			color: gray;
+			background-color: lightgray;
+		}
+		#path input {
+			width: 16vw;
+			height: 4.4vh;
+			font-size: 2.4vmin;
+			border: .5px solid gray;
+			border-radius: 0 .6vmin .6vmin 0;
+			padding: 0 1vmin;
+			box-sizing: border-box;
+			color: #000;
+		}
+		#path input::placeholder {
+			color: darkgray;
+			font-style: italic;
+		}
+		#path button {
+			cursor: pointer;
+			height: 4.4vh;
+			font-size: 2.4vmin;
+			margin-left: .8vw;
+			border-radius: .6vmin;
+			border: .5px solid black;
+			padding-inline: 2vh;
+			box-sizing: border-box;
+			color: lightgray;
+			background-color: black;
+		}
+		#path button:hover {
+			border: .5px solid black;
+			color: white;
+			background-color: gray;
+		}
+		#path button:active {
+			border: .5px solid black;
+			color: black;
+			background-color: white;
+		}
+		/* clears the ‘X’ from Chrome */
+		input[type="search"]::-webkit-search-decoration,
+		input[type="search"]::-webkit-search-cancel-button,
+		input[type="search"]::-webkit-search-results-button,
+		input[type="search"]::-webkit-search-results-decoration { display: none; }
+	</style>
 </head>
+
 <body>
-	Hello, Sailor!
+	<h1>dontpad</h1>
+	<h2>Share text online with zero overhead</h2>
+
+	<form id="path">
+		<span class="prefix">/api</span>
+		<input type="search" name="path" autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
+		<button type="submit">Go!</button>
+	</form>
+
+	<footer>
+		<p>© 2023 baioc</p>
+	</footer>
 </body>
+
 </html>

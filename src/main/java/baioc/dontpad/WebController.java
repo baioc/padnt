@@ -30,39 +30,30 @@ public class WebController {
 	public String get(HttpServletRequest req, Model model) {
 		var path = parseRequestPath(req);
 		String content = notepads.read(path);
-		model.addAttribute("filename", path.filename());
-		model.addAttribute("content", content);
-		return "notepad";
+		return makeView(model, path, content);
 	}
 
 	@PutMapping("/**")
-	public String put(HttpServletRequest req, @RequestBody(required = false) String body, Model model) {
+	public String put(HttpServletRequest req, Model model, @RequestBody(required = false) String body) {
 		if (body == null) return delete(req, model);
 		var path = parseRequestPath(req);
 		notepads.upsert(path, body);
-		model.addAttribute("filename", path.filename());
-		model.addAttribute("content", body);
-		return "notepad";
+		return makeView(model, path, body);
 	}
 
 	@DeleteMapping("/**")
 	public String delete(HttpServletRequest req, Model model) {
 		var path = parseRequestPath(req);
 		notepads.delete(path);
-		model.addAttribute("filename", path.filename());
-		model.addAttribute("content", "");
-		return "notepad";
+		return makeView(model, path, "");
 	}
 
 	private Path parseRequestPath(HttpServletRequest req) {
-		// validate URL path format
+		// validate URL path format and trim leading '/api'
 		String rawpath = req.getRequestURI();
-		if (!rawpath.matches("(/[A-Za-z0-9_\\-]+)*/?")) {
+		if (!rawpath.matches("/api/([A-Za-z0-9_\\-]+/?)+")) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-
-		// '/api' endpoint prefix needs trimming
-		assert rawpath.startsWith("/api/");
 		String fullpath = rawpath.substring(4);
 
 		// trim trailing slash, if any
@@ -77,9 +68,23 @@ public class WebController {
 		String filename = trimmed.substring(separatorPosition + 1);
 
 		// make path record
-		logger.debug("'" + trimmed + "' = '" + directory + "' + '" + filename + "'");
+		logger.debug("'" + fullpath + "' = '" + directory + "' + '" + filename + "'");
 		var path = new Path(directory, filename);
 		return path;
+	}
+
+	private String makeView(Model model, Path path, String content) {
+		// notepad content
+		model.addAttribute("directory", path.directory());
+		model.addAttribute("filename", path.filename());
+		model.addAttribute("content", content);
+
+		// directory listing
+		String folder = path.toString() + "/";
+		model.addAttribute("folder", folder);
+		model.addAttribute("subfiles", notepads.list(folder));
+
+		return "notepad";
 	}
 
 }
