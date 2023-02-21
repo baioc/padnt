@@ -1,29 +1,29 @@
 package baioc.dontpad;
 
-import java.io.Serializable;
-
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 
 @Entity
-@IdClass(Notepad.Path.class)
+@IdClass(Path.class)
 @Table(name = "notepads")
-public record Notepad(
-	@Id String directory,
-	@Id String filename,
-	String content
-) {
+public final class Notepad { // XXX: this could have been a record as well
 
-	public Notepad() { this("/", "", null); }
+	@Id private String directory;
+	@Id private String filename;
+	private String content;
 
-	public record Path(
-		String directory,
-		String filename
-	) implements Serializable {
-		public Path() { this("/", ""); }
+	public Notepad(String directory, String filename, String content) {
+		this.filename = filename;
+		this.directory = directory;
+		this.content = content;
 	}
+
+	protected Notepad() { this(null, null, null); }
+
+	public String directory() { return directory; }
+	public String filename() { return filename; }
+	public String content() { return content; }
 
 }

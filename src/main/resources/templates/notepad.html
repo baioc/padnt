@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title th:text="${filename}"></title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;
+		}
+		textarea {
+			padding: 8px;
+			overflow: auto;
+			width: calc(100vw - 16px);
+			height: calc(100vh - 16px);
+			outline: none;
+			resize: none;
+			border: 0px;
+			font-family: monospace;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<textarea wrap="off" autofocus th:text="${content}"></textarea>
+	</div>
+</body>
+</html>
