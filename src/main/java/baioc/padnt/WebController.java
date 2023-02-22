@@ -1,4 +1,4 @@
-package baioc.dontpad;
+package baioc.padnt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.server.ResponseStatusException;

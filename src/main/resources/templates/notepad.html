@@ -15,6 +15,7 @@
 			overflow: hidden;
 		}
 		body {
+			font-family: monospace;
 			height: 100vh;
 			width: 100vw;
 		}
@@ -30,6 +31,12 @@
 			width: auto;
 			color: dimgray;
 			background-color: lightgray;
+		}
+		#folder h2 {
+			margin-bottom: 2vh;
+		}
+		#folder ol {
+			list-style: none;
 		}
 		#notepad {
 			flex-grow: 1;
@@ -52,9 +59,9 @@
 <body class="flex">
 	<section id="folder" class="column" th:if="${subfiles.size} > 0">
 		<h2 th:text="${folder}"></h2>
-		<ul th:each="subfile: ${subfiles}">
+		<ol th:each="subfile: ${subfiles}">
 			<li><a th:text="${subfile}" th:href="'/api' + ${folder} + ${subfile}"></a></li>
-		</ul>
+		</ol>
 	</section>
 	<section id="notepad" class="column">
 		<textarea wrap="off" autofocus th:text="${content}"></textarea>

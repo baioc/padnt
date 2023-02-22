@@ -1,4 +1,4 @@
-package baioc.dontpad;
+package baioc.padnt;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,18 +28,20 @@ public class NotepadService {
 	 * @return true if and only if a new entry was created by this upsert.
 	 */
 	public boolean upsert(Path path, String content) {
-		boolean existed = repository.existsById(path);
-		repository.save(new Notepad(path.directory(), path.filename(), content));
+		var directory = path.directory();
+		var filename = path.filename();
+		boolean existed = repository.existsByDirectoryAndFilename(directory, filename);
+		repository.save(new Notepad(directory, filename, content));
 		return !existed;
 	}
 
 	public void delete(Path path) {
-		repository.deleteById(path);
+		repository.deleteByDirectoryAndFilename(path.directory(), path.filename());
 	}
 
 	public List<String> list(String folder) {
 		return repository
-			.findByDirectory(folder)
+			.findByDirectoryOrderByFilenameAsc(folder)
 			.stream()
 			.map(Notepad::filename)
 			.collect(Collectors.toList());

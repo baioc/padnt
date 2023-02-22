@@ -1,4 +1,4 @@
-package baioc.dontpad;
+package baioc.padnt;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>dontpad</title>
+	<title>Padn't</title>
 
 	<style>
 		* {
@@ -14,11 +14,11 @@
 			padding: 0px;
 		}
 		body {
-			font-family: sans-serif;
+			font-family: monospace;
 		}
 		h1 {
 			text-align: center;
-			font-size: 8vmin;
+			font-size: 10vmin;
 			margin-top: 24vh;
 			margin-bottom: 2vh;
 			color: black;
@@ -36,6 +36,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			font-size: 2vmin;
 			width: 100vw;
 			height: 8vh;
 		}
@@ -62,6 +63,7 @@
 			height: 4.4vh;
 			font-size: 2.4vmin;
 			border: .5px solid gray;
+			outline: none;
 			border-radius: 0 .6vmin .6vmin 0;
 			padding: 0 1vmin;
 			box-sizing: border-box;
@@ -76,6 +78,7 @@
 			height: 4.4vh;
 			font-size: 2.4vmin;
 			margin-left: .8vw;
+			margin-right: .8vw;
 			border-radius: .6vmin;
 			border: .5px solid black;
 			padding-inline: 2vh;
@@ -102,18 +105,14 @@
 </head>
 
 <body>
-	<h1>dontpad</h1>
-	<h2>Share text online with zero overhead</h2>
+	<h1>padn't</h1>
+	<h2>A zero-overhead collaborative notepad for the web</h2>
 
 	<form id="path">
 		<span class="prefix">/api</span>
 		<input type="search" name="path" autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
 		<button type="submit">Go!</button>
 	</form>
-
-	<footer>
-		<p>© 2023 baioc</p>
-	</footer>
 </body>
 
 </html>
