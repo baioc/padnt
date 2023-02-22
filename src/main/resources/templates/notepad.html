@@ -4,7 +4,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<title th:text="${directory} + ${filename}"></title>
+	<title
+		th:text="${directory} + ${filename}">
+	</title>
 
 	<style>
 		* {
@@ -60,12 +62,54 @@
 	<section id="folder" class="column" th:if="${subfiles.size} > 0">
 		<h2 th:text="${folder}"></h2>
 		<ol th:each="subfile: ${subfiles}">
-			<li><a th:text="${subfile}" th:href="'/api' + ${folder} + ${subfile}"></a></li>
+			<li><a th:href="'/api' + ${folder} + ${subfile}" th:text="${subfile}"></a></li>
 		</ol>
 	</section>
+
 	<section id="notepad" class="column">
-		<textarea wrap="off" autofocus th:text="${content}"></textarea>
+		<textarea wrap="off" autofocus oninput="changed=true"
+			th:text="${content}">
+		</textarea>
 	</section>
+
+	<script>
+		var changed = false;
+		function updateNotepad(path, content) {
+			if (changed) {
+				fetch(path, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'text/plain',
+					},
+					body: content.value,
+				})
+				.then(response => {
+					console.debug(`PUT #${response.status}`)
+				})
+				.catch(error => {
+					console.error('PUT error:', error);
+				});
+			} else {
+				fetch(path, {
+					method: 'GET',
+					headers: {
+						'Accept': 'text/plain',
+					}
+				})
+				.then(response => response.text())
+				.then(text => {
+					content.value = text;
+				})
+				.catch(error => {
+					console.error('GET error:', error);
+				});
+			}
+			changed = false;
+		}
+		const pathname = window.location.pathname;
+		const textarea = document.getElementById('notepad').getElementsByTagName('textarea')[0];
+		setInterval(updateNotepad, 3000, pathname, textarea);
+	</script>
 </body>
 
 </html>

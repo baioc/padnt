@@ -108,10 +108,10 @@
 	<h1>padn't</h1>
 	<h2>A zero-overhead collaborative notepad for the web</h2>
 
-	<form id="path">
+	<form id="path" method="get">
 		<span class="prefix">/api</span>
-		<input type="search" name="path" autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
-		<button type="submit">Go!</button>
+		<input type="search" autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
+		<button type="submit" onclick="this.form.action='/api'+this.form.elements[0].value">go</button>
 	</form>
 </body>
 

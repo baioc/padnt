@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface NotepadRepository extends Repository<Notepad, Path> {
 
@@ -16,6 +17,7 @@ public interface NotepadRepository extends Repository<Notepad, Path> {
 	List<Notepad> findByDirectoryOrderByFilenameAsc(String directory);
 
 	// Delete
+	@Transactional // XXX: @Transactional needed here for some fucking reason
 	void deleteByDirectoryAndFilename(String directory, String filename);
 
 }
