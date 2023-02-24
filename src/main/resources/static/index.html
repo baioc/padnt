@@ -19,7 +19,7 @@
 		h1 {
 			text-align: center;
 			font-size: 10vmin;
-			margin-top: 24vh;
+			margin-top: 25vh;
 			margin-bottom: 2vh;
 			color: black;
 		}
@@ -27,47 +27,34 @@
 			text-align: center;
 			font-size: 3vmin;
 			margin-bottom: 10vh;
-			font-weight: 400;
 			color: gray;
-		}
-		footer {
-			position: fixed;
-			bottom: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 2vmin;
-			width: 100vw;
-			height: 8vh;
 		}
 		form {
 			display: flex;
 			justify-content: center;
-			align-items: center;
+		}
+		#path * {
+			font-size: 2.5vmin;
+			height: 5vh;
+			border-radius: .6vmin;
 		}
 		#path .prefix {
 			display: flex;
 			align-items: center;
-			height: 4.4vh;
-			font-size: 2.4vmin;
+			padding: 0 1.5vmin;
+			color: gray;
+			background-color: lightgray;
 			border: .5px solid gray;
 			border-right: none;
 			border-radius: .6vmin 0 0 .6vmin;
-			padding: 0 1.6vmin;
-			box-sizing: border-box;
-			color: gray;
-			background-color: lightgray;
 		}
 		#path input {
-			width: 16vw;
-			height: 4.4vh;
-			font-size: 2.4vmin;
-			border: .5px solid gray;
-			outline: none;
-			border-radius: 0 .6vmin .6vmin 0;
+			width: 33vw;
 			padding: 0 1vmin;
-			box-sizing: border-box;
+			outline: none;
 			color: #000;
+			border: .5px solid gray;
+			border-radius: 0 .6vmin .6vmin 0;
 		}
 		#path input::placeholder {
 			color: darkgray;
@@ -75,42 +62,31 @@
 		}
 		#path button {
 			cursor: pointer;
-			height: 4.4vh;
-			font-size: 2.4vmin;
+			padding-inline: 2vh;
 			margin-left: .8vw;
 			margin-right: .8vw;
-			border-radius: .6vmin;
-			border: .5px solid black;
-			padding-inline: 2vh;
-			box-sizing: border-box;
 			color: lightgray;
 			background-color: black;
+			border: .5px solid black;
 		}
 		#path button:hover {
-			border: .5px solid black;
 			color: white;
 			background-color: gray;
 		}
 		#path button:active {
-			border: .5px solid black;
 			color: black;
 			background-color: white;
 		}
-		/* clears the ‘X’ from Chrome */
-		input[type="search"]::-webkit-search-decoration,
-		input[type="search"]::-webkit-search-cancel-button,
-		input[type="search"]::-webkit-search-results-button,
-		input[type="search"]::-webkit-search-results-decoration { display: none; }
 	</style>
 </head>
 
 <body>
 	<h1>padn't</h1>
-	<h2>A zero-overhead collaborative notepad for the web</h2>
+	<h2>Notepad but it's an online multiplayer app</h2>
 
 	<form id="path" method="get">
 		<span class="prefix">/api</span>
-		<input type="search" autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
+		<input autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
 		<button type="submit" onclick="this.form.action='/api'+this.form.elements[0].value">go</button>
 	</form>
 </body>

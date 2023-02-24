@@ -71,7 +71,7 @@ public class WebController {
 		// validate URL path format and trim leading '/api'
 		String rawpath = req.getRequestURI();
 		if (!rawpath.matches("/api/([A-Za-z0-9_\\-]+/?)+")) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		String fullpath = rawpath.substring(4);
 
