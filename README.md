@@ -2,7 +2,13 @@
 
 [Padn't](https://padnt.azurewebsites.net/) is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
 
-![padnt-index-mo](https://user-images.githubusercontent.com/27034173/221325954-b8131c34-6171-4fcd-ba20-73404346bc6a.png)
+<br/>
+<picture>
+  <source srcset="https://user-images.githubusercontent.com/27034173/221334819-a09ff5c2-8df0-400e-895c-eee96c95dd9c.png" media="(prefers-color-scheme: dark)" alt="padnt-index-transparent-darkmode" />
+  <img src="https://user-images.githubusercontent.com/27034173/221334818-390a15a5-1b76-4d0c-be84-8093290e9b1e.png" alt="padnt-index-transparent" />
+</picture>
+<br/>
+<br/>
 
 
 ## Starting the server
