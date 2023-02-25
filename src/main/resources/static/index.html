@@ -80,14 +80,14 @@
 	</style>
 </head>
 
-<body>
+<body onload="document.getElementById('path-prefix').textContent=window.location.host+'/'">
 	<h1>padn't</h1>
 	<h2>Notepad but it's an online multiplayer app</h2>
 
 	<form id="path" method="get">
-		<span class="prefix">/api</span>
-		<input autocapitalize="none" autocorrect="off" placeholder="/my/online-notepad" />
-		<button type="submit" onclick="this.form.action='/api'+this.form.elements[0].value">go</button>
+		<span id="path-prefix" class="prefix">/</span>
+		<input autocapitalize="none" autocorrect="off" placeholder="my/online-notepad" />
+		<button type="submit" onclick="this.form.action='/'+this.form.elements[0].value">go</button>
 	</form>
 </body>
 

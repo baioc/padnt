@@ -62,7 +62,7 @@
 	<section id="folder" class="column" th:if="${subfiles.size} > 0">
 		<h2 th:text="${folder}"></h2>
 		<ol th:each="subfile: ${subfiles}">
-			<li><a th:href="'/api' + ${folder} + ${subfile}" th:text="${subfile}"></a></li>
+			<li><a th:href="${folder} + ${subfile}" th:text="${subfile}"></a></li>
 		</ol>
 	</section>
 

@@ -15,8 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import jakarta.servlet.http.HttpServletRequest;
 
+// NOTE: class-level mapping matches any non-empty path without dots (includes slashes),
+// so static resources MUST have a file extension. I couldn't get a more complex regex to
+// work here, so actual path validation and separation is implemented in `parseRequestPath`.
 @Controller
-@RequestMapping("/api")
+@RequestMapping(path="/{_:[^\\.]+$}")
 public class WebController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -68,12 +71,12 @@ public class WebController {
 	}
 
 	private Path parseRequestPath(HttpServletRequest req) {
-		// validate URL path format and trim leading '/api'
-		String rawpath = req.getRequestURI();
-		if (!rawpath.matches("/api/([A-Za-z0-9_\\-]+/?)+")) {
+		// validate URL path format
+		String fullpath = req.getRequestURI();
+		if (!fullpath.matches("/([A-Za-z0-9_\\-]+/?)+")) {
+			logger.error("invalid URL path '" + fullpath + "'");
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		String fullpath = rawpath.substring(4);
 
 		// trim trailing slash, if any
 		String trimmed =

@@ -13,16 +13,11 @@ $ mvn spring-boot:run
 
 ### Environment variables
 
-Name | Variable
+Name | Value
 ---|---
 `SERVER_PORT` | `8080` |
 `LOGGING_LEVEL_ROOT` | `INFO` |
+`LOGGING_LEVEL_BAIOC_PADNT` | `${LOGGING_LEVEL_ROOT}` |
 `JAVA_OPTS` | `''` |
 
-
-## TODOs
-
-1. Check out Spring Boot Actuator
-   * [Reference](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/actuator.html#actuator)
-   * [How-to Guide](https://spring.io/guides/gs/actuator-service/)
-2. Add password-protected notepads with header-based auth
+NOTE: `JAVA_OPTS` can be used to override anything else on [application.properties](src/main/resources/application.properties), for instance.
