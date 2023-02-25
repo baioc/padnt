@@ -1,30 +1,28 @@
 # Padn't
 
-A [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
+[Padn't](https://padnt.azurewebsites.net/) is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
+
+![padnt-index-mo](https://user-images.githubusercontent.com/27034173/221325954-b8131c34-6171-4fcd-ba20-73404346bc6a.png)
 
 
 ## Starting the server
 
 ```sh
-[dev]$ mvn spring-boot:run
-```
-
-```sh
-[prod]$ java -jar target/dontpad-VERSION.jar
+$ mvn spring-boot:run
 ```
 
 ### Environment variables
 
-variable | default
+Name | Variable
 ---|---
 `SERVER_PORT` | `8080` |
 `LOGGING_LEVEL_ROOT` | `INFO` |
+`JAVA_OPTS` | `''` |
 
 
-## TODO list
+## TODOs
 
-1. Deploy to Azure (and test app through HTTPS)
-2. Check out Spring Boot Actuator
+1. Check out Spring Boot Actuator
    * [Reference](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/actuator.html#actuator)
    * [How-to Guide](https://spring.io/guides/gs/actuator-service/)
-3. Add password-protected notepads with header-based auth
+2. Add password-protected notepads with header-based auth

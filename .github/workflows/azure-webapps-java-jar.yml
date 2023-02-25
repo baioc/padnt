@@ -1,9 +1,9 @@
-name: Build and deploy JAR app to Azure Web App
+name: Build and deploy JAR to Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: padnt
   JAVA_VERSION: '17'
-  DISTRIBUTION: zulu # see https://github.com/actions/setup-java#supported-distributions
+  DISTRIBUTION: 'microsoft' # see https://github.com/actions/setup-java#supported-distributions
 
 on:
   push:
