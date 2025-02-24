@@ -1,6 +1,6 @@
 # Padn't
 
-[Padn't](https://padnt.azurewebsites.net/) is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
+Padn't is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
 
 <br/>
 <picture>
