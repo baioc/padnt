@@ -13,17 +13,26 @@ Padn't is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring B
 
 ## Starting the server
 
+Running it locally:
+
 ```sh
 $ mvn spring-boot:run
 ```
 
+Or, in order to deploy from a JAR:
+
+```sh
+$ mvn clean package
+$ java -jar target/padnt-${version}.jar
+```
+
 ### Environment variables
 
-Name | Value
----|---
-`SERVER_PORT` | `8080` |
-`LOGGING_LEVEL_ROOT` | `INFO` |
-`LOGGING_LEVEL_BAIOC_PADNT` | `${LOGGING_LEVEL_ROOT}` |
-`JAVA_OPTS` | `''` |
+| Name | Value |
+| --- | --- |
+| `SERVER_PORT` | `8080` |
+| `LOGGING_LEVEL_ROOT` | `INFO` |
+| `LOGGING_LEVEL_BAIOC_PADNT` | `${LOGGING_LEVEL_ROOT}` |
+| `JAVA_OPTS` | `''` |
 
-NOTE: `JAVA_OPTS` can be used to override anything else on [application.properties](src/main/resources/application.properties), for instance.
+NOTE: `JAVA_OPTS` can be used to override anything else on [application.properties](src/main/resources/application.properties).
