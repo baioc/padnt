@@ -19,7 +19,7 @@ Running it locally:
 $ mvn spring-boot:run
 ```
 
-Or, in order to deploy from a JAR:
+Or, in order to build (and deploy from) a JAR:
 
 ```sh
 $ mvn clean package
