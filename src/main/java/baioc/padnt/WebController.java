@@ -39,7 +39,7 @@ public class WebController {
 		model.addAttribute("directory", path.directory());
 		model.addAttribute("filename", path.filename());
 		model.addAttribute("content", content);
-		String folder = path.toString() + "/";
+		String folder = path.directory() + path.filename() + "/";
 		model.addAttribute("folder", folder);
 		model.addAttribute("subfiles", notepads.list(folder));
 		return "notepad";

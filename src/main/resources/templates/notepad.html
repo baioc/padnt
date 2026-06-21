@@ -10,14 +10,11 @@
 
 	<style>
 		* {
-			margin: 0px;
-			padding: 0px;
-		}
-		html {
-			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			font-family: monospace;
 		}
 		body {
-			font-family: monospace;
 			height: 100vh;
 			width: 100vw;
 		}
@@ -52,14 +49,13 @@
 			overflow: auto;
 			outline: none;
 			resize: none;
-			border: 0px;
-			font-family: monospace;
+			border: 0;
 		}
 	</style>
 </head>
 
 <body class="flex">
-	<section id="folder" class="column" th:if="${subfiles.size} > 0">
+	<section id="folder" class="column" th:if="${subfiles.size()} > 0">
 		<h2 th:text="${folder}"></h2>
 		<ol th:each="subfile: ${subfiles}">
 			<li><a th:href="${folder} + ${subfile}" th:text="${subfile}"></a></li>
@@ -84,7 +80,7 @@
 					body: content.value,
 				})
 				.then(response => {
-					console.debug(`PUT #${response.status}`)
+					console.debug(`PUT -> #${response.status}`);
 				})
 				.catch(error => {
 					console.error('PUT error:', error);
@@ -96,7 +92,10 @@
 						'Accept': 'text/plain',
 					}
 				})
-				.then(response => response.text())
+				.then(response => {
+					console.debug(`GET -> #${response.status}`);
+					return response.text();
+				})
 				.then(text => {
 					content.value = text;
 				})

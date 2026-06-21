@@ -12,12 +12,11 @@ public interface NotepadRepository extends Repository<Notepad, Path> {
 	Notepad save(Notepad notepad);
 
 	// Read
-	boolean existsByDirectoryAndFilename(String directory, String filename);
-	Optional<Notepad> findByDirectoryAndFilename(String directory, String filename);
+	Optional<Notepad> findById(Path path);
 	List<Notepad> findByDirectoryOrderByFilenameAsc(String directory);
 
 	// Delete
-	@Transactional // XXX: @Transactional needed here for some fucking reason
+	@Transactional // XXX: see https://stackoverflow.com/q/32269192
 	void deleteByDirectoryAndFilename(String directory, String filename);
 
 }

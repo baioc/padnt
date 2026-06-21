@@ -1,9 +1,6 @@
 package baioc.padnt;
 
-import java.io.Serializable;
-
-// XXX: this should have been a record, but Spring sucks
-public final class Path implements Serializable {
+public class Path {
 
 	private String directory;
 	private String filename;
@@ -30,11 +27,6 @@ public final class Path implements Serializable {
 	@Override
 	public int hashCode() {
 		return directory.hashCode() - filename.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return directory + filename;
 	}
 
 }

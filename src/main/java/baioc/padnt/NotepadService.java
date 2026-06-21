@@ -1,7 +1,6 @@
 package baioc.padnt;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -15,24 +14,15 @@ public class NotepadService {
 	}
 
 	public String read(Path path) {
-		var directory = path.directory();
-		var filename = path.filename();
 		return repository
-			.findByDirectoryAndFilename(directory, filename)
-			.orElse(new Notepad(directory, filename, ""))
+			.findById(path)
+			.orElse(new Notepad(path, ""))
 			.content();
 	}
 
-	/**
-	 * Either creates a new notepad, or updates an existing one at the specified path.
-	 * @return true if and only if a new entry was created by this upsert.
-	 */
-	public boolean upsert(Path path, String content) {
-		var directory = path.directory();
-		var filename = path.filename();
-		boolean existed = repository.existsByDirectoryAndFilename(directory, filename);
-		repository.save(new Notepad(directory, filename, content));
-		return !existed;
+	public void upsert(Path path, String content) {
+		var notepad = new Notepad(path, content);
+		repository.save(notepad);
 	}
 
 	public void delete(Path path) {
@@ -44,7 +34,7 @@ public class NotepadService {
 			.findByDirectoryOrderByFilenameAsc(folder)
 			.stream()
 			.map(Notepad::filename)
-			.collect(Collectors.toList());
+			.toList();
 	}
 
 }

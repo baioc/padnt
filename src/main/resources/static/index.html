@@ -10,11 +10,27 @@
 
 	<style>
 		* {
-			margin: 0px;
-			padding: 0px;
+			margin: 0;
+			padding: 0;
+			font-family: monospace;
 		}
 		body {
-			font-family: monospace;
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+		}
+		main {
+			flex: 1 0 auto;
+		}
+		footer {
+			flex-shrink: 0;
+			height: 1.4vh;
+			padding: 1vh 0 1vh 0;
+			color: dimgray;
+			background-color: lightgray;
+		}
+		footer * {
+			margin-left: 1vw;
 		}
 		h1 {
 			text-align: center;
@@ -38,7 +54,7 @@
 			height: 5vh;
 			border-radius: .6vmin;
 		}
-		#path .prefix {
+		#path span {
 			display: flex;
 			align-items: center;
 			padding: 0 1.5vmin;
@@ -81,14 +97,20 @@
 </head>
 
 <body onload="document.getElementById('path-prefix').textContent=window.location.host+'/'">
-	<h1>padn't</h1>
-	<h2>Notepad but it's an online multiplayer app</h2>
+	<main>
+		<h1>padn't</h1>
+		<h2>Notepad but it's an online multiplayer app</h2>
 
-	<form id="path" method="get">
-		<span id="path-prefix" class="prefix">/</span>
-		<input autocapitalize="none" autocorrect="off" placeholder="my/online-notepad" />
-		<button type="submit" onclick="this.form.action='/'+this.form.elements[0].value">go</button>
-	</form>
+		<form id="path" method="get">
+			<span id="path-prefix">/</span>
+			<input autocapitalize="none" autocorrect="off" placeholder="my/online-notepad" />
+			<button type="submit" onclick="this.form.action='/'+this.form.elements[0].value">go</button>
+		</form>
+	</main>
+
+	<footer>
+		<a href="https://github.com/baioc/padnt">GitHub</a>
+	</footer>
 </body>
 
 </html>
