@@ -2,14 +2,7 @@
 
 Padn't is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
 
-<br/>
-<picture>
-  <source srcset="https://user-images.githubusercontent.com/27034173/221334819-a09ff5c2-8df0-400e-895c-eee96c95dd9c.png" media="(prefers-color-scheme: dark)" alt="padnt-index-transparent-darkmode" />
-  <img src="https://user-images.githubusercontent.com/27034173/221334818-390a15a5-1b76-4d0c-be84-8093290e9b1e.png" alt="padnt-index-transparent" />
-</picture>
-<br/>
-<br/>
-
+<img src="https://github.com/user-attachments/assets/835e5fd3-dc49-4073-bd58-dcc4af63c3b9" alt="padnt-index" />
 
 ## Starting the server
 
@@ -19,11 +12,11 @@ Running it locally:
 $ mvn spring-boot:run
 ```
 
-Or, in order to build (and deploy from) a JAR:
+Or, in order to build (and deploy from) a JAR file:
 
 ```sh
 $ mvn clean package
-$ java -jar target/padnt-${version}.jar
+$ java -jar target/padnt-*.jar
 ```
 
 ### Environment variables
@@ -33,6 +26,9 @@ $ java -jar target/padnt-${version}.jar
 | `SERVER_PORT` | `8080` |
 | `LOGGING_LEVEL_ROOT` | `INFO` |
 | `LOGGING_LEVEL_BAIOC_PADNT` | `${LOGGING_LEVEL_ROOT}` |
+| `PADNT_INDEX_TITLE` | `"padn't"` |
+| `PADNT_INDEX_DESCRIPTION` | `"Notepad but it's an online multiplayer app"` |
+| `PADNT_INDEX_GITHUB` | `"https://github.com/baioc/padnt"` |
 | `JAVA_OPTS` | `''` |
 
 NOTE: `JAVA_OPTS` can be used to override anything else on [application.properties](src/main/resources/application.properties).

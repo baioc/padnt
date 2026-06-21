@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title
-		th:text="${directory} + ${filename}">
-	</title>
+		th:text="${directory} + ${filename}"
+	></title>
 
 	<style>
 		* {
@@ -64,8 +65,8 @@
 
 	<section id="notepad" class="column">
 		<textarea wrap="off" autofocus oninput="changed=true"
-			th:text="${content}">
-		</textarea>
+			th:text="${content}"
+		></textarea>
 	</section>
 
 	<script>

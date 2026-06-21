@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Padn't</title>
@@ -24,12 +23,13 @@
 		}
 		footer {
 			flex-shrink: 0;
-			height: 1.4vh;
+			height: auto;
 			padding: 1vh 0 1vh 0;
 			color: dimgray;
 			background-color: lightgray;
 		}
 		footer * {
+			font-size: 2vmin;
 			margin-left: 1vw;
 		}
 		h1 {
@@ -76,6 +76,12 @@
 			color: darkgray;
 			font-style: italic;
 		}
+		#path input:invalid {
+			border: .5px solid red;
+		}
+		#path input:user-valid {
+			border: .5px solid green;
+		}
 		#path button {
 			cursor: pointer;
 			padding-inline: 2vh;
@@ -98,18 +104,24 @@
 
 <body onload="document.getElementById('path-prefix').textContent=window.location.host+'/'">
 	<main>
-		<h1>padn't</h1>
-		<h2>Notepad but it's an online multiplayer app</h2>
+		<h1 th:text="${title}"></h1>
+		<h2 th:text="${description}"></h2>
 
 		<form id="path" method="get">
 			<span id="path-prefix">/</span>
-			<input autocapitalize="none" autocorrect="off" placeholder="my/online-notepad" />
-			<button type="submit" onclick="this.form.action='/'+this.form.elements[0].value">go</button>
+			<input
+				placeholder="my/online-notepad"
+				pattern="([A-Za-z0-9_\-]+/?)+"
+				autocapitalize="off" autocorrect="off"
+			/>
+			<button type="submit" onclick="this.form.action='/'+this.form.elements[0].value">
+				go
+			</button>
 		</form>
 	</main>
 
 	<footer>
-		<a href="https://github.com/baioc/padnt">GitHub</a>
+		<a th:href="${github}">GitHub</a>
 	</footer>
 </body>
 

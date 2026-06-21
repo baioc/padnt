@@ -1,36 +1,36 @@
 package baioc.padnt;
 
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ResponseStatusException;
 
 // NOTE: class-level mapping matches any non-empty path without dots (includes slashes),
 // so static resources MUST have a file extension. I couldn't get a more complex regex to
 // work here, so actual path validation and separation is implemented in `parseRequestPath`.
 @Controller
-@RequestMapping(path="/{_:[^\\.]+$}")
-public class WebController {
+@RequestMapping("/{_:[^\\.]+$}")
+public class PadntController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private final NotepadService notepads;
 
 	@Autowired
-	public WebController(NotepadService service) {
+	public PadntController(NotepadService service) {
 		this.notepads = service;
 	}
 
-	@GetMapping(value="/**", produces="text/html")
+	@GetMapping(path="/**", produces="text/html")
 	public String getAsHtml(HttpServletRequest req, Model model) {
 		// fetch notepad
 		var path = parseRequestPath(req);
@@ -45,14 +45,14 @@ public class WebController {
 		return "notepad";
 	}
 
-	@GetMapping(value="/**", produces="text/plain")
+	@GetMapping(path="/**", produces="text/plain")
 	@ResponseBody
 	public String getAsPlainText(HttpServletRequest req) {
 		var path = parseRequestPath(req);
 		return notepads.read(path);
 	}
 
-	@PutMapping(value="/**", consumes="text/plain")
+	@PutMapping(path="/**", consumes="text/plain")
 	@ResponseBody
 	public void put(HttpServletRequest req, @RequestBody(required = false) String body) {
 		var path = parseRequestPath(req);
@@ -88,6 +88,7 @@ public class WebController {
 		int separatorPosition = trimmed.lastIndexOf('/');
 		String directory = trimmed.substring(0, separatorPosition + 1);
 		String filename = trimmed.substring(separatorPosition + 1);
+		// NOTE: slash is part of directory in this split ^
 
 		// make path record
 		logger.debug("'" + fullpath + "' = '" + directory + "' + '" + filename + "'");
