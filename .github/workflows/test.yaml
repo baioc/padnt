@@ -1,0 +1,43 @@
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Install system dependencies
+        run: |
+          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y default-jdk maven
+      - name: Setup dependency cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: test-${{ hashFiles('pom.xml') }}
+      - name: Run tests
+        run: |
+          mvn test
+      - name: Generate summary
+        run: |
+          cat target/surefire-reports/*.txt | awk -F'[ :,]+' '
+            /Test set:/ {
+              suite=$3;
+              printf "\n## %s", suite;
+            }
+            /Tests run:/ {
+              status = ($5==0 && $7==0 ? "✅" : "❌");
+              printf " %s\n\n", status;
+              printf "| Test Suite | %s |\n", suite;
+              printf "|---|---|\n";
+              printf "| Tests run | %s |\n", $3;
+              printf "| Failures | %s |\n", $5;
+              printf "| Errors | %s |\n", $7;
+              printf "| Skipped | %s |\n", $9;
+              printf "| Time elapsed (s) | %s |\n", $12;
+              printf "| Suite status | %s |\n", status;
+            }
+          ' > $GITHUB_STEP_SUMMARY
