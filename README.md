@@ -26,8 +26,10 @@ $ java -jar target/padnt-*.jar
 | `SERVER_PORT` | `8080` |
 | `LOGGING_LEVEL_ROOT` | `INFO` |
 | `LOGGING_LEVEL_BAIOC_PADNT` | `${LOGGING_LEVEL_ROOT}` |
+| `LOGGING_LEVEL_ORG_HIBERNATE_SQL` | `${LOGGING_LEVEL_ROOT}` |
 | `PADNT_INDEX_TITLE` | `"padn't"` |
-| `PADNT_INDEX_DESCRIPTION` | `"Notepad but it's an online multiplayer app"` |
+| `PADNT_INDEX_DESCRIPTION` | `"Notepad but it's an online multiplayer app,..."` |
+| `PADNT_INDEX_PLACEHOLDER` | `"my/online-notepad,..."` |
 | `PADNT_INDEX_GITHUB` | `"https://github.com/baioc/padnt"` |
 | `JAVA_OPTS` | `''` |
 

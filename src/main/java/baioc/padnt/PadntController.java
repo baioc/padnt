@@ -22,12 +22,12 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/{_:[^\\.]+$}")
 public class PadntController {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private final NotepadService notepads;
 
 	@Autowired
 	public PadntController(NotepadService service) {
-		this.notepads = service;
+		notepads = service;
 	}
 
 	@GetMapping(path="/**", produces="text/html")
