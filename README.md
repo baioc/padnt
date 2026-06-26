@@ -2,6 +2,8 @@
 
 Padn't is a [Dontpad](https://dontpad.com/) clone implemented with Java Spring Boot.
 
+You can try it out at [padnt.org](https://padnt.org/):
+
 <img src="https://github.com/user-attachments/assets/835e5fd3-dc49-4073-bd58-dcc4af63c3b9" alt="padnt-index" />
 
 ## Starting the server
@@ -23,6 +25,7 @@ $ java -jar target/padnt-*.jar
 
 | Name | Value |
 | --- | --- |
+| `SERVER_ADDRESS` | `0.0.0.0` |
 | `SERVER_PORT` | `8080` |
 | `LOGGING_LEVEL_ROOT` | `INFO` |
 | `LOGGING_LEVEL_BAIOC_PADNT` | `${LOGGING_LEVEL_ROOT}` |
